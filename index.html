@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio Digital: Arquitectura del Computador - UNETI</title>
+</head>
+<body style="margin: 0; padding: 16px; background: #fdf2f8;">
+
+<div id="uneti-portafolio-pro" style="font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; background: radial-gradient(circle at top left, #ffe4ef 0%, #f3e8ff 48%, #f198c9 100%); color: #2a1829; padding: 26px; border-radius: 24px; border: 1.5px solid #f5d0fe; box-shadow: 0 16px 40px rgba(157, 23, 77, 0.08); max-width: 100%;">
+  <style>
+    #uneti-portafolio-pro, #uneti-portafolio-pro * { box-sizing: border-box; }
+
+    /* Portada Hero */
+    .u-hero {
+      position: relative;
+      background: linear-gradient(125deg, #be185d 0%, #7e22ce 55%, #4338ca 100%);
+      color: #ffffff;
+      padding: 28px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(126, 34, 206, 0.25);
+    }
+    .u-hero-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    @media (max-width: 720px) { .u-hero-grid { grid-template-columns: 1fr; } }
+
+    .u-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .u-title {
+      margin: 0 0 8px 0;
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.18;
+    }
+    .u-subtitle {
+      margin: 0 0 14px 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.92);
+    }
+    .u-hero-visual {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+    }
+    .u-meta-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 10px;
+      background: rgba(17, 24, 39, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 16px;
+      font-size: 12.5px;
+    }
+    .u-meta-item span { display: block; font-size: 10px; text-transform: uppercase; opacity: 0.8; }
+    .u-meta-item strong { font-size: 13px; font-weight: 700; }
+
+    /* Navegación principal */
+    .u-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0 12px 0;
+    }
+    .u-tabs { display: flex; flex-wrap: wrap; gap: 7px; }
+    .u-tab-btn {
+      background: #ffffff;
+      color: #831843;
+      border: 1.5px solid #fbcfe8;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .u-tab-btn:hover { background: #fdf2f8; transform: translateY(-1px); }
+    .u-tab-btn.active {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 6px 16px rgba(219, 39, 119, 0.28);
+    }
+    .u-print-btn {
+      background: #fff7ed;
+      color: #9a3412;
+      border: 1.5px solid #fed7aa;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Sub-selector dentro de Sesión didáctica 1 */
+    .u-subnav {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1.5px solid #f0abfc;
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+    .u-subnav-label {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #701a75;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .u-subtabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .u-subtab-btn {
+      background: #fdf4ff;
+      color: #6b21a8;
+      border: 1.5px solid #e9d5ff;
+      padding: 7px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .u-subtab-btn:hover {
+      background: #fae8ff;
+      border-color: #d8b4fe;
+    }
+    .u-subtab-btn.active {
+      background: linear-gradient(135deg, #9333ea, #db2777);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.25);
+    }
+
+    /* Paneles y cajas */
+    .u-panel, .u-sd1-activity { display: none; }
+    .u-panel.active, .u-sd1-activity.active { display: block; animation: uFade 0.25s ease; }
+    @keyframes uFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    .u-box {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid #f5d0fe;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 20px rgba(88, 28, 135, 0.05);
+    }
+    .u-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .u-kicker {
+      display: inline-block;
+      background: #fae8ff;
+      color: #86198f;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+    .u-date-tag {
+      background: #fce7f3;
+      color: #9d174d;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    .u-h2 { margin: 6px 0 12px 0; font-size: 19px; font-weight: 800; color: #4a044e; }
+    .u-p { margin: 0 0 12px 0; font-size: 13.8px; line-height: 1.65; color: #3b2638; }
+
+    /* Perfil de Autor */
+    .u-author-card {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+      background: #fffafc;
+      border: 1.5px solid #fbcfe8;
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .u-author-photo {
+      width: 115px;
+      height: 115px;
+      border-radius: 16px;
+      object-fit: cover;
+      object-position: top center;
+      border: 3px solid #ec4899;
+      background: #fdf2f8;
+    }
+
+    /* Tablas responsivas */
+    .u-table-wrap { width: 100%; overflow-x: auto; }
+    .u-table { width: 100%; border-collapse: collapse; font-size: 12.8px; margin-top: 10px; }
+    .u-table th {
+      background: #fae8ff;
+      color: #701a75;
+      text-align: left;
+      padding: 10px;
+      border-bottom: 2px solid #e879f9;
+    }
+    .u-table td {
+      padding: 10px;
+      border-bottom: 1px solid #f5d0fe;
+      color: #3b2638;
+      vertical-align: top;
+    }
+
+    /* Cuadrículas */
+    .u-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 12px; }
+
+    /* Fotos de laboratorio */
+    .u-eq-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: linear-gradient(90deg, #fdf2f8, #f5f3ff);
+      border-left: 4px solid #db2777;
+      padding: 9px 14px;
+      border-radius: 10px;
+      margin: 16px 0 10px 0;
+    }
+    .u-photo-card {
+      background: #ffffff;
+      border: 1.5px solid #f0abfc;
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .u-photo-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      object-position: center;
+      background: #fdf2f8;
+      border-radius: 10px;
+      margin: 8px 0;
+      border: 1px solid #f5d0fe;
+    }
+    .u-toma-badge {
+      background: #fce7f3;
+      color: #9d174d;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    /* Estilo para organizadores gráficos e infografías en imagen */
+    .u-comparison-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      border: 2px solid #f5d0fe;
+      margin-top: 14px;
+      box-shadow: 0 4px 12px rgba(126, 34, 206, 0.1);
+    }
+
+    /* Ajustes para impresión / exportación PDF (muestra todas las secciones activas) */
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .u-toolbar, .u-subnav, .u-placeholder-panel { display: none !important; }
+      #uneti-portafolio-pro {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+      }
+      #sec-portada, #sec-sd1, .u-sd1-activity {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+      .u-box {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        margin-bottom: 18px !important;
+      }
+      .u-comparison-img, .u-photo-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+
+  <!-- PORTADA LLAMATIVA -->
+  <div class="u-hero">
+    <div class="u-hero-grid">
+      <div>
+        <div class="u-pill">✨ UNETI • PNF en Informática • Arquitectura del Computador</div>
+        <h1 class="u-title">Portafolio Digital: Arquitectura del Computador</h1>
+        <p class="u-subtitle">
+          Bitácora visual y técnica de laboratorio: análisis de hardware, jerarquía de memoria, inspección física y diagnóstico de equipos.
+        </p>
+      </div>
+      <!-- Ilustración SVG alusiva a CPU y Arquitectura -->
+      <div class="u-hero-visual">
+        <svg width="110" height="82" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="32" y="17" width="56" height="56" rx="10" fill="rgba(255,255,255,0.2)" stroke="#FFFFFF" stroke-width="2.5"/>
+          <rect x="44" y="29" width="32" height="32" rx="5" fill="#FBCFE8" stroke="#FFFFFF" stroke-width="2"/>
+          <path d="M45 8V17M60 8V17M75 8V17M45 73V82M60 73V82M75 73V82M22 32H32M22 45H32M22 58H32M88 32H98M88 45H98M88 58H98" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="60" y="49" text-anchor="middle" fill="#831843" font-size="11" font-weight="800" font-family="sans-serif">CPU</text>
+        </svg>
+        <div style="font-size: 11px; font-weight: 700; margin-top: 4px;">VERSIÓN ACTIVA: v0.1.0</div>
+      </div>
+    </div>
+
+    <div class="u-meta-bar">
+      <div class="u-meta-item"><span>Institución</span><strong>UNETI</strong></div>
+      <div class="u-meta-item"><span>Unidad Curricular</span><strong>Arquitectura del Computador</strong></div>
+      <div class="u-meta-item"><span>Fase / Corte</span><strong>Fase 0 & Fase 1 (VAC-SD1)</strong></div>
+      <div class="u-meta-item"><span>Fecha Publicación</span><strong>27/11/2026</strong></div>
+    </div>
+  </div>
+
+  <!-- BARRA DE PESTAÑAS PRINCIPALES -->
+  <div class="u-toolbar">
+    <div class="u-tabs">
+      <button type="button" class="u-tab-btn active" onclick="irSeccion('portada', this)">👩‍💻 Autor & Versiones</button>
+      <button type="button" class="u-tab-btn" onclick="irSeccion('sd1', this)">📚 Sesión didáctica 1</button>
+      <button type="button" class="u-tab-btn" onclick="irSeccion('sd2', this)">📚 Sesión didáctica 2</button>
+      <button type="button" class="u-tab-btn" onclick="irSeccion('sd3', this)">📚 Sesión didáctica 3</button>
+      <button type="button" class="u-tab-btn" onclick="irSeccion('sd4', this)">📚 Sesión didáctica 4</button>
+      <button type="button" class="u-tab-btn" onclick="irSeccion('sd5', this)">📚 Sesión didáctica 5</button>
+    </div>
+    <button type="button" class="u-print-btn" onclick="window.print()">🖨️ Exportar / PDF</button>
+  </div>
+
+  <!-- PESTAÑA 1: AUTOR + CONTROL DE VERSIONES ISO 9001 7.5 -->
+  <div id="sec-portada" class="u-panel active">
+    <div class="u-box">
+      <div class="u-header-row">
+        <span class="u-kicker">Identificación del Participante</span>
+      </div>
+      <h2 class="u-h2">Perfil Profesional del Autor</h2>
+      <div class="u-author-card">
+        <img class="u-author-photo" src="https://drive.google.com/thumbnail?id=17Y7kc2olgEZSM0reYTFV1nUqWbgZIevg&sz=w400" alt="Fotografía profesional de Jennifer Moreno">
+        <div style="flex: 1; min-width: 220px;">
+          <h3 style="margin: 0 0 4px 0; color: #831843; font-size: 17px;">Jennifer Juliany Moreno Cartalla</h3>
+          <p style="margin: 0 0 8px 0; font-size: 12.5px; font-weight: 700; color: #6b21a8;">
+            C.I.: V-27.080.263 • TSU en Informática • Estudiante de Ingeniería en Informática (UNETI)
+          </p>
+          <p class="u-p" style="margin: 0; font-size: 13px;">
+            Especialista en soporte técnico, infraestructura tecnológica y administración de servidores (Windows/Linux). Este portafolio sistematiza las prácticas de diagnóstico, auditoría de hardware y arquitectura computacional desarrolladas durante la unidad curricular.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="u-box">
+      <div class="u-header-row">
+        <span class="u-kicker">Gestión Documental • ISO 9001:2015 Cláusula 7.5</span>
+        <span class="u-date-tag">Control de Información Documentada</span>
+      </div>
+      <h2 class="u-h2">Tabla de Control de Versiones</h2>
+      <div class="u-table-wrap">
+        <table class="u-table">
+          <thead>
+            <tr>
+              <th>Versión</th>
+              <th>Fecha</th>
+              <th>Fase / Sesión</th>
+              <th>Descripción de Cambios Realizados</th>
+              <th>Autor / Aprobación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>v0.1.0</strong></td>
+              <td>27/11/2026</td>
+              <td>Fase 0 y Fase 1 (VAC-SD1)</td>
+              <td>Cierre completo de Sesión didáctica 1, Incorporación de portada institucional, perfil profesional, control de versiones ISO 9001 7.5, cuestionario Fase 0, organizador gráfico comparativo, infografía técnica del Algoritmo de Shor, ensayo crítico, auditoría completa y evidencias fotográficas sin recorte de los 3 procesadores (EQ01, EQ02 y EQ03), Caso de Uso CU-001 (ISO/IEC/IEEE 29148) y Reflexión Individual #1.</td>
+              <td>Jennifer Juliany Moreno Cartalla<br><em>(Listo para revisión docente)</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PESTAÑA UNIFICADA: SESIÓN DIDÁCTICA 1 (CON SELECTOR INTERACTIVO) -->
+  <div id="sec-sd1" class="u-panel">
+    <div class="u-subnav">
+      <span class="u-subnav-label">Selecciona una actividad de Sesión didáctica 1:</span>
+      <div class="u-subtabs">
+        <button type="button" class="u-subtab-btn active" onclick="irActividadSD1('fase0', this)">📝 Fase 0 (Eval-1)</button>
+        <button type="button" class="u-subtab-btn" onclick="irActividadSD1('cuantica', this)">⚛️ Cuántica & Algoritmos</button>
+        <button type="button" class="u-subtab-btn" onclick="irActividadSD1('arquitectura', this)">✍️ Arquitectura del Computador</button>
+        <button type="button" class="u-subtab-btn" onclick="irActividadSD1('lab', this)">🖥️ Lab CPU & Herramientas</button>
+        <button type="button" class="u-subtab-btn" onclick="irActividadSD1('casouso', this)">📐 CU-001</button>
+        <button type="button" class="u-subtab-btn" onclick="irActividadSD1('reflexion', this)">💡 Reflexión Individual #1</button>
+      </div>
+    </div>
+
+    <!-- SUB-ACTIVIDAD 1: FASE 0 · EVALUACIÓN-1 -->
+    <div id="sd1-fase0" class="u-sd1-activity active">
+      <div class="u-box">
+        <div class="u-header-row">
+          <span class="u-kicker">Fase 0 • Evaluación-1 (10% / 2 pts)</span>
+          <span class="u-date-tag">📅 Fecha: 25/11/2026</span>
+        </div>
+        <h2 class="u-h2">Cuestionario Teórico: Fundamentos de Arquitectura (SD1)</h2>
+        <p class="u-p">
+          Registro de validación conceptual correspondiente a la Sesión Didáctica 1, previo encuentro síncrono con el docente para aclaratoria de dudas sobre estructura interna de la CPU, jerarquía de memoria y representación de datos.
+        </p>
+        <div class="u-table-wrap">
+          <table class="u-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Planteamiento Evaluado</th>
+                <th>Respuesta Validada</th>
+                <th>Fundamento Técnico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>Registros que determinan cuándo una instrucción debe ejecutarse o no</td>
+                <td><strong>Registros de estado</strong></td>
+                <td>Almacenan banderas (flags) de condición tras operaciones de la ALU.</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>La prioridad de todo el sistema es ejecutar la mayor cantidad de instrucciones</td>
+                <td><strong>Falso</strong></td>
+                <td>La prioridad es el rendimiento efectivo (tiempo de respuesta y eficiencia), no el conteo bruto.</td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>Bit: unidad más pequeña de datos que puede almacenar una computadora</td>
+                <td><strong>Verdadero</strong></td>
+                <td>Representa un estado binario elemental (0 o 1).</td>
+              </tr>
+              <tr>
+                <td>04</td>
+                <td>Registros de datos guardan valores numéricos, caracteres o grandes órdenes</td>
+                <td><strong>Verdadero</strong></td>
+                <td>Retienen temporalmente los operandos procesados por la CPU.</td>
+              </tr>
+              <tr>
+                <td>05</td>
+                <td>Al interrumpirse el suministro eléctrico, los datos en RAM se pierden</td>
+                <td><strong>Verdadero</strong></td>
+                <td>La memoria RAM es volátil y requiere energía constante para mantener cargas.</td>
+              </tr>
+              <tr>
+                <td>06</td>
+                <td>La Unidad de Control realiza cálculos y operaciones lógicas</td>
+                <td><strong>Falso</strong></td>
+                <td>Esa función corresponde exclusivamente a la Unidad Aritmético-Lógica (ALU).</td>
+              </tr>
+              <tr>
+                <td>07</td>
+                <td>Hardware consiste en circuitos, visualizadores, almacenamiento y periféricos</td>
+                <td><strong>Verdadero</strong></td>
+                <td>Abarca todos los componentes físicos y electromecánicos del sistema.</td>
+              </tr>
+              <tr>
+                <td>08</td>
+                <td>Byte: patrón de bits con longitud de 9 bits equivale a 1 byte</td>
+                <td><strong>Falso</strong></td>
+                <td>El estándar de arquitectura moderna define 1 byte = 8 bits.</td>
+              </tr>
+              <tr>
+                <td>09</td>
+                <td>Objetivo de la jerarquía de memoria: rendimiento rápido al coste de memoria lenta</td>
+                <td><strong>Verdadero</strong></td>
+                <td>Se logra aprovechando los principios de localidad temporal y espacial.</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>La ALU acepta entradas/programas y envía resultados directos a dispositivos de salida</td>
+                <td><strong>Falso</strong></td>
+                <td>La E/S se gestiona mediante buses, controladores y registros bajo dirección de la UC.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB-ACTIVIDAD 2: PRÁCTICA CUÁNTICA -->
+    <div id="sd1-cuantica" class="u-sd1-activity">
+      <div class="u-box">
+        <div class="u-header-row">
+          <span class="u-kicker">VAC-SD1 • Actividad 1: Organizador Gráfico</span>
+          <span class="u-date-tag">📅 Fecha: 27/11/2026</span>
+        </div>
+        <h2 class="u-h2">Análisis Comparativo: Computación Clásica vs. Computación Cuántica</h2>
+        <p class="u-p">
+          Organizador gráfico comparativo que contrasta las dimensiones clave entre la computación clásica y la computación cuántica.
+        </p>
+        <img class="u-comparison-img" src="https://drive.google.com/thumbnail?id=1mhrvY5lt-_yLSBxN7KZdPaq3f79iA60M&sz=w1600" alt="Organizador Gráfico: Computación Clásica vs. Cuántica">
+      </div>
+
+      <div class="u-box">
+        <div class="u-header-row">
+          <span class="u-kicker">VAC-SD1 • Actividad 2: Infografía Técnica</span>
+          <span class="u-date-tag">📅 Fecha: 27/11/2026</span>
+        </div>
+        <h2 class="u-h2">Algoritmo Cuántico Destacado: Algoritmo de Factorización de Shor (1994)</h2>
+        <p class="u-p">
+          Infografía técnica que detalla el problema de la factorización clásica, la solución mediante superposición y Transformada Cuántica de Fourier (QFT), el flujo paso a paso y su aplicación práctica en criptografía post-cuántica.
+        </p>
+        <img class="u-comparison-img" src="https://drive.google.com/thumbnail?id=1ffn7bfTILT59EKZOxfzeyNgO24pVzzUR&sz=w1600" alt="Infografía Técnica: Algoritmo de Factorización de Shor (1994)">
+      </div>
+    </div>
+
+    <!-- SUB-ACTIVIDAD 3: ENSAYO CRÍTICO -->
+    <div id="sd1-arquitectura" class="u-sd1-activity">
+      <div class="u-box">
+        <div class="u-header-row">
+          <span class="u-kicker">VAC-SD1 • Actividad 3: Ensayo Crítico</span>
+          <span class="u-date-tag">📅 Fecha: 27/11/2026</span>
+        </div>
+        <h2 class="u-h2">Más Allá del Silicio: El Ingeniero en Informática ante la Era Heterogénea y Cuántica</h2>
+        <p class="u-p">
+          Ensayo crítico estructurado visualmente en torno a las barreras físicas del silicio, la transición hacia arquitecturas heterogéneas y cuánticas, y el rol estratégico del ingeniero en informática.
+        </p>
+        <img class="u-comparison-img" src="https://drive.google.com/thumbnail?id=1Ng4FvhH95hhzfmOMUt0zdNof3gQZSXhR&sz=w1600" alt="Ensayo Crítico: Más Allá del Silicio">
+      </div>
+    </div>
+
+    <!-- SUB-ACTIVIDAD 4: IDENTIFICACIÓN DE CPU + HERRAMIENTAS -->
+    <div id="sd1-lab" class="u-sd1-activity">
+      <div class="u-box">
+        <div class="u-header-row">
+          <span class="u-kicker">VAC-SD1 • Actividad 4: Auditoría de 3 Procesadores</span>
+          <span class="u-date-tag">📅 Fecha: 27/11/2026</span>
+        </div>
+        <h2 class="u-h2">Tabla Comparativa de Identificación de CPU</h2>
+        <p class="u-p" style="font-size: 12.8px;">
+          Relevamiento técnico obtenido mediante <code>lscpu</code> en sistemas Linux (EQ01 y EQ02) y Propiedades del sistema en Windows 10 Pro (EQ03).
+        </p>
+        <div class="u-table-wrap">
+          <table class="u-table">
+            <thead>
+              <tr>
+                <th>Parámetro Técnico</th>
+                <th>Equipo 01 (EQ01)</th>
+                <th>Equipo 02 (EQ02)</th>
+                <th>Equipo 03 (EQ03)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Marca y Modelo</strong></td>
+                <td>Intel(R) Xeon(R) CPU E5607 @ 2.27GHz</td>
+                <td>Intel(R) Core(TM) i5-6600 CPU @ 3.30GHz</td>
+                <td>Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz (3.41 GHz)</td>
+              </tr>
+              <tr>
+                <td><strong>Generación / Arquitectura</strong></td>
+                <td>Familia 6, Modelo 44, Revisión 2 (Westmere-EP) • x86_64 (32/64-bit, Little Endian)</td>
+                <td>6.ª Gen Skylake (Familia 6, Modelo 94, Revisión 3) • x86_64 (32/64-bit, VT-x)</td>
+                <td>7.ª Gen Kaby Lake • x64 (SO Windows 10 Pro 22H2, 64 bits)</td>
+              </tr>
+              <tr>
+                <td><strong>Tipo de Zócalo (Socket)</strong></td>
+                <td>1 Socket (LGA1366 / servidor)</td>
+                <td>1 Socket (LGA1151)</td>
+                <td>LGA1151 (Chasis torre/escritorio empresarial)</td>
+              </tr>
+              <tr>
+                <td><strong>Núcleos / Hilos / Frecuencia</strong></td>
+                <td>4 Núcleos / 4 Hilos (1 hilo/núcleo) • 1197 MHz mín. – 2261 MHz máx.</td>
+                <td>4 Núcleos / 4 Hilos (1 hilo/núcleo) • 800 MHz mín. – 3900 MHz máx.</td>
+                <td>4 Núcleos / 4 Hilos • 3.40 GHz base (8,00 GB RAM / 7,89 GB usable)</td>
+              </tr>
+              <tr>
+                <td><strong>Caché y Direccionamiento</strong></td>
+                <td>L1d: 128 KB (4x) • L1i: 128 KB (4x) • L2: 1 MB (4x) • L3: 8 MB • 40 bits fís. / 48 bits virt.</td>
+                <td>L1d: 128 KB (4x) • L1i: 128 KB (4x) • L2: 1 MB (4x) • L3: 6 MB • 39 bits fís. / 48 bits virt.</td>
+                <td>Arquitectura x64 con gráficos integrados Intel HD Graphics 630 (128 MB) y disco 466 GB WDC WD5000AAKX</td>
+              </tr>
+              <tr>
+                <td><strong>Recomendaciones de Uso y Cuidado</strong></td>
+                <td>Mantener flujo de aire frontal libre, renovar pasta térmica periódicamente y aplicar actualizaciones de microcódigo/mitigaciones de seguridad.</td>
+                <td>Limpieza periódica del disipador, verificación de ventilación en gabinete compacto y monitoreo térmico bajo carga.</td>
+                <td>Conservar ventilación del chasis Dell libre de polvo, respaldar información periódicamente y verificar estado de unidad mecánica WDC.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Evidencias fotográficas -->
+        <div class="u-eq-banner">
+          <strong>Evidencia Fotográfica del Participante con cada Equipo</strong>
+          <span>Auditoría presencial verificada (EQ01, EQ02 y EQ03)</span>
+        </div>
+        <div class="u-grid-3">
+          <div class="u-photo-card">
+            <span class="u-toma-badge">EQ01 • Participante + Equipo</span>
+            <img src="https://drive.google.com/thumbnail?id=1J8eFt1l9dR4CsS60O_0Lex0IUVnmsym8&sz=w1000" alt="Evidencia EQ01 - Intel Xeon E5607">
+            <p style="font-size: 12px; margin: 0;">Auditoría por consola (<code>lscpu</code>) en Equipo 01 (Intel Xeon E5607).</p>
+          </div>
+          <div class="u-photo-card">
+            <span class="u-toma-badge">EQ02 • Participante + Equipo</span>
+            <img src="https://drive.google.com/thumbnail?id=1D3GCnE9FnfTUm9Q0pQOlZZkgup9aVF1w&sz=w1000" alt="Evidencia EQ02 - Intel Core i5-6600">
+            <p style="font-size: 12px; margin: 0;">Auditoría por consola (<code>lscpu</code>) en Equipo 02 (Intel Core i5-6600).</p>
+          </div>
+          <div class="u-photo-card">
+            <span class="u-toma-badge">EQ03 • Participante + Equipo</span>
+            <img src="https://drive.google.com/thumbnail?id=1Q9VtxXV_vELt1PKmJgoeYCrj7TeyR2nn&sz=w1000" alt="Evidencia EQ03 - Intel Core i5-7500">
+            <p style="font-size: 12px; margin: 0;">Verificación en Windows 10 en Equipo 03 (Intel Core i5-7500).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="u-box">
+        <div class="u-header-row">
+          <span class="u-kicker">VAC-SD1 • Actividad 5: Herramientas HW & SW</span>
+          <span class="u-date-tag">📅 Fecha: 26/11/2026</span>
+        </div>
+        <h2 class="u-h2">Herramientas de Mantenimiento y Diagnóstico Arquitectónico</h2>
+        <div class="u-table-wrap">
+          <table class="u-table">
+            <thead>
+              <tr>
+                <th>Representación</th>
+                <th>Herramienta</th>
+                <th>Tipo</th>
+                <th>Aplicación Técnica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-size: 22px; text-align: center;">🪛</td>
+                <td><strong>Juego de Destornilladores de Precisión (Philips, Plano, Torx)</strong></td>
+                <td>Hardware</td>
+                <td>Apertura segura de gabinetes, fijación de placa base, fuentes de poder y bahías de almacenamiento.</td>
+              </tr>
+              <tr>
+                <td style="font-size: 22px; text-align: center;">🧴</td>
+                <td><strong>Pasta Térmica y Alcohol Isopropílico</strong></td>
+                <td>Hardware</td>
+                <td>Limpieza de superficies de contacto y mejora de conductividad térmica entre el IHS de la CPU y el disipador.</td>
+              </tr>
+              <tr>
+                <td style="font-size: 22px; text-align: center;">⚡</td>
+                <td><strong>Pulsera Antiestática (ESD) y Multímetro Digital</strong></td>
+                <td>Hardware</td>
+                <td>Protección de circuitos integrados contra descargas electrostáticas y medición de voltajes en rieles ATX.</td>
+              </tr>
+              <tr>
+                <td style="font-size: 22px; text-align: center;">📊</td>
+                <td><strong>CPU-Z / HWiNFO64 / Propiedades del Sistema</strong></td>
+                <td>Software</td>
+                <td>Identificación detallada de microarquitectura, zócalo, stepping, frecuencias de reloj, cachés y sensores térmicos.</td>
+              </tr>
+              <tr>
+                <td style="font-size: 22px; text-align: center;">🐧</td>
+                <td><strong>Comandos <code>lscpu</code>, <code>dmidecode</code> e <code>inxi</code> (Linux)</strong></td>
+                <td>Software</td>
+                <td>Auditoría por consola de topología de CPU, tablas SMBIOS/DMI, ranuras de memoria y buses del sistema.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB-ACTIVIDAD 5: CASO DE USO CU-001 (ISO/IEC/IEEE 29148) -->
+    <div id="sd1-casouso" class="u-sd1-activity">
+      <div class="u-box">
+        <div class="u-header-row">
+          <span class="u-kicker">Especificación de Requisitos • ISO/IEC/IEEE 29148</span>
+          <span class="u-date-tag">📅 Fecha: 26/11/2026</span>
+        </div>
+        <h2 class="u-h2">Caso de Uso Técnico: CU-001 — Auditar Arquitectura de Hardware</h2>
+        <div class="u-table-wrap">
+          <table class="u-table">
+            <tbody>
+              <tr>
+                <th style="width: 28%;">Identificador y Nombre</th>
+                <td><strong>CU-001: Auditar Arquitectura de Hardware</strong></td>
+              </tr>
+              <tr>
+                <th>Actor Primario</th>
+                <td>Técnico / Estudiante de Ingeniería en Informática (Auditor de Soporte).</td>
+              </tr>
+              <tr>
+                <th>Actores Secundarios</th>
+                <td>Sistema Operativo huésped, firmware UEFI/BIOS y herramienta de diagnóstico (CPU-Z / <code>lscpu</code>).</td>
+              </tr>
+              <tr>
+                <th>Precondiciones</th>
+                <td>
+                  1. El equipo de cómputo cuenta con suministro eléctrico estable y arranca correctamente.<br>
+                  2. El actor primario posee permisos de usuario local o administrador para ejecutar herramientas de consulta.<br>
+                  3. Las utilidades de diagnóstico están instaladas o disponibles en medio portátil.
+                </td>
+              </tr>
+              <tr>
+                <th>Flujo Principal (Escenario de Éxito)</th>
+                <td>
+                  1. El actor primario inspecciona externamente el chasis y registra el código de inventario o etiqueta del equipo.<br>
+                  2. El actor inicia la herramienta de diagnóstico de hardware a nivel de sistema operativo.<br>
+                  3. El sistema consulta los registros internos del procesador (CPUID) y las tablas de firmware SMBIOS.<br>
+                  4. La herramienta despliega modelo de CPU, arquitectura (x86_64/ARM), zócalo, núcleos, niveles de caché y capacidad de RAM.<br>
+                  5. El actor primario valida la coherencia entre el hardware detectado y las especificaciones técnicas del fabricante.<br>
+                  6. El actor registra los parámetros en la ficha comparativa y emite recomendaciones preventivas de mantenimiento.
+                </td>
+              </tr>
+              <tr>
+                <th>Postcondiciones</th>
+                <td>
+                  1. Se genera el registro auditado y verificado de la arquitectura del equipo en la bitácora de laboratorio.<br>
+                  2. El equipo permanece operativo sin alteraciones en su configuración base.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB-ACTIVIDAD 6: REFLEXIÓN INDIVIDUAL #1 -->
+    <div id="sd1-reflexion" class="u-sd1-activity">
+      <div class="u-box">
+        <div class="u-header-row">
+          <span class="u-kicker">Cierre Fase 1 • Ponderación Individual</span>
+          <span class="u-date-tag">📅 Fecha: 26/11/2026</span>
+        </div>
+        <h2 class="u-h2">Reflexión de Aprendizaje Individual #1</h2>
+        <p class="u-p">
+          El desarrollo de esta primera fase permitió integrar la base teórica sobre la organización interna del procesador, los ciclos de instrucción y la jerarquía de memoria con la verificación práctica sobre equipos reales. Contrastar los conceptos estudiados en la Sesión Didáctica 1 con la lectura directa de parámetros mediante herramientas de auditoría evidencia que comprender el hardware subyacente resulta indispensable para diagnosticar cuellos de botella, prevenir fallas térmicas y fundamentar decisiones de soporte técnico.
+        </p>
+        <p class="u-p" style="margin-bottom: 0;">
+          Asimismo, estructurar el portafolio bajo criterios formales como el control de versiones (ISO 9001 7.5) y la especificación de casos de uso técnicos (ISO/IEC/IEEE 29148) transforma una simple entrega académica en una bitácora profesional trazable y verificable, sentando una base metodológica sólida para las siguientes sesiones de laboratorio.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANELES PLACEHOLDER PARA SESIONES DIDÁCTICAS 2 A 5 (SE OCULTAN AL IMPRIMIR) -->
+  <div id="sec-sd2" class="u-panel u-placeholder-panel">
+    <div class="u-box">
+      <span class="u-kicker">Próxima Fase</span>
+      <h2 class="u-h2">Sesión Didáctica 2</h2>
+      <p class="u-p" style="margin-bottom: 0;">Sección reservada para las prácticas, laboratorios y evidencias de la Sesión Didáctica 2 (en desarrollo).</p>
+    </div>
+  </div>
+
+  <div id="sec-sd3" class="u-panel u-placeholder-panel">
+    <div class="u-box">
+      <span class="u-kicker">Próxima Fase</span>
+      <h2 class="u-h2">Sesión Didáctica 3</h2>
+      <p class="u-p" style="margin-bottom: 0;">Sección reservada para las prácticas, laboratorios y evidencias de la Sesión Didáctica 3 (en desarrollo).</p>
+    </div>
+  </div>
+
+  <div id="sec-sd4" class="u-panel u-placeholder-panel">
+    <div class="u-box">
+      <span class="u-kicker">Próxima Fase</span>
+      <h2 class="u-h2">Sesión Didáctica 4</h2>
+      <p class="u-p" style="margin-bottom: 0;">Sección reservada para las prácticas, laboratorios y evidencias de la Sesión Didáctica 4 (en desarrollo).</p>
+    </div>
+  </div>
+
+  <div id="sec-sd5" class="u-panel u-placeholder-panel">
+    <div class="u-box">
+      <span class="u-kicker">Próxima Fase</span>
+      <h2 class="u-h2">Sesión Didáctica 5</h2>
+      <p class="u-p" style="margin-bottom: 0;">Sección reservada para las prácticas, laboratorios y evidencias de la Sesión Didáctica 5 (en desarrollo).</p>
+    </div>
+  </div>
+
+  <script>
+    function irSeccion(idSec, btn) {
+      var paneles = document.querySelectorAll('#uneti-portafolio-pro .u-panel');
+      var botones = document.querySelectorAll('#uneti-portafolio-pro .u-tab-btn');
+      for (var i = 0; i < paneles.length; i++) paneles[i].classList.remove('active');
+      for (var j = 0; j < botones.length; j++) botones[j].classList.remove('active');
+      var destino = document.getElementById('sec-' + idSec);
+      if (destino) destino.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function irActividadSD1(idAct, btn) {
+      var actividades = document.querySelectorAll('#uneti-portafolio-pro .u-sd1-activity');
+      var subbotones = document.querySelectorAll('#uneti-portafolio-pro .u-subtab-btn');
+      for (var i = 0; i < actividades.length; i++) actividades[i].classList.remove('active');
+      for (var j = 0; j < subbotones.length; j++) subbotones[j].classList.remove('active');
+      var destino = document.getElementById('sd1-' + idAct);
+      if (destino) destino.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+  </script>
+</div>
+</body>
+</html>
